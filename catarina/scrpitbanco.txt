@@ -1,0 +1,10 @@
+create database Catarina;
+use catarina;
+
+create table dados(
+ID int primary key auto_increment,
+MEMORIA decimal(18,2),
+TEMPO decimal(18,2)
+);
+
+select * from  dados;
