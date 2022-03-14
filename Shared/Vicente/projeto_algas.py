@@ -3,21 +3,36 @@ import psycopg2
 import time
 import tracemalloc
 import sys
+# from datetime import timedelta, datetime
 
-def sum_of_init(n):
-    tracemalloc.start()
-    dt_inicio = time.time()
-    state = []
-    accumulate = 0
-    for i in range(1, n+1):
-        accumulate += i
+blocks = [
+    range(100_000, 600_000, 100_000),
+    range(1_000, 6_000, 100),
+    range(100, 600, 100),
+    range(10, 60, 10),
+    range(1_000_000, 6_000_000, 1_000_000)
+]
+
+def sum_of_init():
     # mv = memoryview(b'accumulate')
-    dt_fim = time.time()
-    memory = tracemalloc.get_traced_memory()[1]
-    state.append({'i': i, 'transactions': n, 'accumulate': accumulate, 'memory': memory, 'time_elapsed': (dt_fim - dt_inicio)})
-    tracemalloc.stop()
-    print(state)
-    return state
+    num_blocks = 0
+    dataTransaction = []
+    for block in blocks:
+        num_blocks += 1
+        for transactions in block:
+            dt_inicio = time.time()
+            tracemalloc.start()
+            accumulate = 0
+
+            for i in range(1, transactions+1):
+                accumulate += i
+
+            dt_fim = time.time()
+            memory = tracemalloc.get_traced_memory()[1]
+            dataTransaction.append({'i': i, 'block_transaction': num_blocks,'transactions': transactions, 'accumulate': accumulate, 'memory': memory, 'time_elapsed': (dt_fim - dt_inicio)})
+            tracemalloc.stop()
+
+    return dataTransaction
 
 
 def connectAndInsert(insertedValues):
@@ -36,8 +51,8 @@ def connectAndInsert(insertedValues):
         cur = conn.cursor()
         for i in insertedValues:
 	      # execute a statement
-            postgres_insert_query = """ INSERT INTO measures (transactions, accumulate, memory, time_elapsed) VALUES (%s,%s,%s,%s)"""
-            record_to_insert = (i['transactions'], i['accumulate'], i['memory'], i['time_elapsed'])
+            postgres_insert_query = """ INSERT INTO measures (block_transaction, transactions, accumulate, memory, time_elapsed) VALUES (%s,%s,%s,%s,%s)"""
+            record_to_insert = (i['block_transaction'], i['transactions'], i['accumulate'], i['memory'], i['time_elapsed'])
             print('PostgreSQL database version:')
             cur.execute(postgres_insert_query, record_to_insert)
             conn.commit()
@@ -55,9 +70,5 @@ def connectAndInsert(insertedValues):
             conn.close()
             print('Database connection closed.')
 
-for valor in [100000, 2000000, 9000000, 7500000, 1000000, 24449, 9760978, 10, 78, 1325769, 100000]:
-    # iteracoes = sum_of_init(valor)
-    connectAndInsert(sum_of_init(valor))
 
-# for i in range(1, 1000000000000):
-#     sum_of_init(i)
+connectAndInsert(sum_of_init())
