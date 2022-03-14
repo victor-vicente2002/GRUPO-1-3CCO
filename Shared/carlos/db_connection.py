@@ -4,7 +4,6 @@ import matplotlib.pyplot as plt
 import numpy as np
 from datetime import datetime
 
-
 def gen_data(n):
     tracemalloc.start()
 
@@ -19,15 +18,12 @@ def gen_data(n):
     tracemalloc.stop()
     return rtn
 
-
 def connect():
     return psycopg2.connect(host="localhost", port=5432, database="measures", user="postgres", password="docker")
-
 
 def disconnect(cur, conn):
     cur.close()
     conn.close()
-
 
 def insert(value, acc, used_memory, time_elapsed):
     conn = connect()
@@ -39,10 +35,9 @@ def insert(value, acc, used_memory, time_elapsed):
 
     disconnect(cur, conn)
 
-
 def find_all():
     conn = connect()
-    cur = conn.cursor()
+    cur = conn.cursor() 
 
     cur.execute("""SELECT * FROM measures""")
     query_results = cur.fetchall()
@@ -50,21 +45,17 @@ def find_all():
 
     disconnect(cur, conn)
 
+res = []
+for value in range(1000, 100000, 1000):
+    res.append(gen_data(value))
 
-# res = []
-# for value in range(1000, 100000, 1000):
-#     res.append(gen_data(value))
-#
-# for value in res:
-#     print(value)
-#     insert(value[0], value[1], value[2], value[3])
+for value in res:
+    print(value)
+    insert(value[0], value[1], value[2], value[3])
 # find_all()
 
+# xpoints = np.array([1, 8])
+# ypoints = np.array([3, 10])
 
-xpoints = np.array([1, 8])
-ypoints = np.array([3, 10])
-
-plt.plot(xpoints, ypoints)
-plt.show()
-
-#%%
+# plt.plot(xpoints, ypoints)
+# plt.show()
