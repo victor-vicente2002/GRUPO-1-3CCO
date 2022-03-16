@@ -15,14 +15,7 @@ blocks = [
 
 numBlock = 0
 dataTransaction = []
-
-for bank_transactions in blocks:
-    numBlock += 1
-    for transaction in bank_transactions:
-        sum_of_init(transaction)
         
-
-
 def sum_of_init(transaction):
     # mv = memoryview(b'accumulate')
     dt_inicio = time.time()
@@ -74,4 +67,9 @@ def connectAndInsert(insertedValues):
             print('Database connection closed.')
 
 
+for bank_transactions in blocks:
+    numBlock += 1
+    for transaction in bank_transactions:
+        sum_of_init(transaction)
+        
 connectAndInsert(dataTransaction)
