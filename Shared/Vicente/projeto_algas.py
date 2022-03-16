@@ -3,7 +3,7 @@ import psycopg2
 import time
 import tracemalloc
 import sys
-# from datetime import timedelta, datetime
+from datetime import timedelta, datetime
 
 blocks = [
     range(100_000, 600_000, 100_000),
@@ -13,26 +13,29 @@ blocks = [
     range(1_000_000, 6_000_000, 1_000_000)
 ]
 
-def sum_of_init():
+numBlock = 0
+dataTransaction = []
+
+for bank_transactions in blocks:
+    numBlock += 1
+    for transaction in bank_transactions:
+        sum_of_init(transaction)
+        
+
+
+def sum_of_init(transaction):
     # mv = memoryview(b'accumulate')
-    num_blocks = 0
-    dataTransaction = []
-    for block in blocks:
-        num_blocks += 1
-        for transactions in block:
-            dt_inicio = time.time()
-            tracemalloc.start()
-            accumulate = 0
+    dt_inicio = time.time()
+    tracemalloc.start()
+    accumulate = 0
 
-            for i in range(1, transactions+1):
-                accumulate += i
+    for i in range(1, transaction +1):
+        accumulate += i
 
-            dt_fim = time.time()
-            memory = tracemalloc.get_traced_memory()[1]
-            dataTransaction.append({'i': i, 'block_transaction': num_blocks,'transactions': transactions, 'accumulate': accumulate, 'memory': memory, 'time_elapsed': (dt_fim - dt_inicio)})
-            tracemalloc.stop()
-
-    return dataTransaction
+    dt_fim = time.time()
+    memory = tracemalloc.get_traced_memory()[1]
+    dataTransaction.append({'i': i, 'block_transaction': numBlock,'transactions': transaction, 'accumulate': accumulate, 'memory': memory, 'time_elapsed': (dt_fim - dt_inicio)})
+    tracemalloc.stop()
 
 
 def connectAndInsert(insertedValues):
@@ -71,4 +74,4 @@ def connectAndInsert(insertedValues):
             print('Database connection closed.')
 
 
-connectAndInsert(sum_of_init())
+connectAndInsert(dataTransaction)
