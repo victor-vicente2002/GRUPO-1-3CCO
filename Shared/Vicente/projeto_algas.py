@@ -29,6 +29,7 @@ def sum_of_init(transaction):
     memory = tracemalloc.get_traced_memory()[1]
     dataTransaction.append({'i': i, 'block_transaction': numBlock,'transactions': transaction, 'accumulate': accumulate, 'memory': memory, 'time_elapsed': (dt_fim - dt_inicio)})
     tracemalloc.stop()
+    tracemalloc.clear_traces()
 
 
 def connectAndInsert(insertedValues):
@@ -71,5 +72,5 @@ for bank_transactions in blocks:
     numBlock += 1
     for transaction in bank_transactions:
         sum_of_init(transaction)
-        
+
 connectAndInsert(dataTransaction)
