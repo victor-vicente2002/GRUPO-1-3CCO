@@ -2,7 +2,15 @@ import psycopg2
 import tracemalloc
 import matplotlib.pyplot as plt
 import numpy as np
-from datetime import datetime
+from datetime import datetime, timedelta
+
+blocks = [
+    range(100_000, 600_000, 100_000),
+    range(1_000, 6_000, 100),
+    range(100, 600, 100),
+    range(10, 60, 10),
+    range(1_000_000, 6_000_000, 1_000_000)
+]
 
 def gen_data(n):
     tracemalloc.start()
@@ -45,13 +53,21 @@ def find_all():
 
     disconnect(cur, conn)
 
-res = []
-for value in range(1000, 100000, 1000):
-    res.append(gen_data(value))
+for block in blocks:
+    print("\n", "executing block", block)
+    executions = []
+    for transaction in block:
+        executions.append(gen_data(transaction))
+    for execution in executions:
+        print(execution)
+        insert(execution[0], execution[1], execution[2], execution[3])
 
-for value in res:
-    print(value)
-    insert(value[0], value[1], value[2], value[3])
+# for value in range(1000, 100000, 1000):
+#     res.append(gen_data(value))
+
+# for value in res:
+#     print(value)
+#     insert(value[0], value[1], value[2], value[3])
 # find_all()
 
 # xpoints = np.array([1, 8])
