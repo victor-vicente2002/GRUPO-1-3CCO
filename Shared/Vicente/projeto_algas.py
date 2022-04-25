@@ -27,6 +27,7 @@ def sum_of_init(transaction):
 
     dt_fim = time.time()
     memory = tracemalloc.get_traced_memory()[1]
+    print({'i': i, 'block_transaction': numBlock,'transactions': transaction, 'accumulate': accumulate, 'memory': memory, 'time_elapsed': (dt_fim - dt_inicio)})
     dataTransaction.append({'i': i, 'block_transaction': numBlock,'transactions': transaction, 'accumulate': accumulate, 'memory': memory, 'time_elapsed': (dt_fim - dt_inicio)})
     tracemalloc.stop()
     tracemalloc.clear_traces()
@@ -43,7 +44,7 @@ def connectAndInsert(insertedValues):
           database="measures",
           user="postgres",
           password="senha123",
-          port="3306")
+          port="5432")
         # create a cursor
         cur = conn.cursor()
         for i in insertedValues:
