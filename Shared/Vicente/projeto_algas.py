@@ -68,7 +68,7 @@ def connectAndInsert(insertedValues):
             print('Database connection closed.')
 
 
-while(true):
+while(True):
     print("===================== Menu =====================")
     valor = int(input("Selecione sua opção:\n1- Inserir no banco\n2- Sair\n"))
     print(valor)
@@ -88,11 +88,3 @@ while(true):
 
     else:
         print("Valor inválido digite novamente")
-
-
-# for bank_transactions in blocks:
-#     numBlock += 1
-#     for transaction in bank_transactions:
-#         sum_of_init(transaction)
-
-# connectAndInsert(dataTransaction)
