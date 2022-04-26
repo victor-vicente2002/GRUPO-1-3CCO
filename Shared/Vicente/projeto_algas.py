@@ -2,10 +2,7 @@ from operator import imod
 import psycopg2
 import time
 import tracemalloc
-import sys
 from datetime import timedelta, datetime
-
-from sqlalchemy import true
 
 blocks = [
     range(100_000, 600_000, 100_000),
