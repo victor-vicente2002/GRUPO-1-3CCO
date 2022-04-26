@@ -5,6 +5,8 @@ import tracemalloc
 import sys
 from datetime import timedelta, datetime
 
+from sqlalchemy import true
+
 blocks = [
     range(100_000, 600_000, 100_000),
     range(1_000, 6_000, 100),
@@ -69,9 +71,31 @@ def connectAndInsert(insertedValues):
             print('Database connection closed.')
 
 
-for bank_transactions in blocks:
-    numBlock += 1
-    for transaction in bank_transactions:
-        sum_of_init(transaction)
+while(true):
+    print("===================== Menu =====================")
+    valor = int(input("Selecione sua opção:\n1- Inserir no banco\n2- Sair\n"))
+    print(valor)
+    if(valor == 1):
+        selected_block = int(input("Selecione qual bloco deseja executar\n1- De 100_000 a 600_000 no pace de 100_000\n2- De 1_000 a 6_000 no pace de 100\n3- De 100 a 600 no pae de 100\n4- De 10 a 60 no pace de 10\n5- De 1_000_000 a 6_000_000 no pace de 1_000_000\n"))
+        numBlock = selected_block
 
-connectAndInsert(dataTransaction)
+        for transaction in blocks[selected_block - 1]:
+            sum_of_init(transaction)
+        
+        connectAndInsert(dataTransaction)
+        dataTransaction = []
+        numBlock = 0
+    elif (valor == 2):
+        print("Encerrando programa...")
+        break
+
+    else:
+        print("Valor inválido digite novamente")
+
+
+# for bank_transactions in blocks:
+#     numBlock += 1
+#     for transaction in bank_transactions:
+#         sum_of_init(transaction)
+
+# connectAndInsert(dataTransaction)
