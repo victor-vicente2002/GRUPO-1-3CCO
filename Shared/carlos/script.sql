@@ -1,8 +1,9 @@
-CREATE TABLE measures(
+
+CREATE TABLE IF NOT EXISTS  water_measures(
     id SERIAL PRIMARY KEY,
-    value NUMERIC,
-    acc NUMERIC,
-    used_memory NUMERIC,
-    time_elapsed NUMERIC,
-    exec_date TIMESTAMP DEFAULT NOW()
+    sample_score NUMERIC,
+    sulfates NUMERIC,
+    sample_qty NUMERIC,
+    chloramines NUMERIC,
+    analysis_date TIMESTAMP DEFAULT NOW()
 );

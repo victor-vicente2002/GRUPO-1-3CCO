@@ -1,7 +1,7 @@
 import psycopg2
 import tracemalloc
-import matplotlib.pyplot as plt
-import numpy as np
+# import matplotlib.pyplot as plt
+# import numpy as np
 from datetime import datetime, timedelta
 
 blocks = [
@@ -27,7 +27,7 @@ def gen_data(n):
     return rtn
 
 def connect():
-    return psycopg2.connect(host="localhost", port=5432, database="measures", user="postgres", password="docker")
+    return psycopg2.connect(host="localhost", port=5432, database="water_measures", user="postgres", password="postgres")
 
 def disconnect(cur, conn):
     cur.close()
@@ -37,7 +37,7 @@ def insert(value, acc, used_memory, time_elapsed):
     conn = connect()
     cur = conn.cursor()
 
-    cur.execute("INSERT INTO measures(value, acc, used_memory, time_elapsed) VALUES(%s, %s, %s, %s)",
+    cur.execute("INSERT INTO water_measures(sample_score, sulfates, sample_qty, chloramines) VALUES(%s, %s, %s, %s)",
                 (value, acc, used_memory, time_elapsed))
     conn.commit()
 
