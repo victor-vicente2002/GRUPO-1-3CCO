@@ -1,9 +1,16 @@
+DROP DATABASE IF EXISTS project_db;
+
+CREATE DATABASE project_db;
+
+USE project_db;
+
 CREATE TABLE insert_values (
     id int PRIMARY KEY auto_increment,
-    bank_transaction int,
-    accumulate long,
-    memory decimal(18, 2),
-    time_elapsed numeric(18, 2),
-    exec_date datetime default CURRENT_TIMESTAMP(),
-    block_transaction int
+    nome varchar(100),
+    sistema_abastecimento int,
+    turbidez decimal(10,5),
+    ph decimal(10,5),
+    temperatura decimal(10,5),
+    coliformes int,
+    exec_date datetime default CURRENT_TIMESTAMP()
 );
