@@ -1,0 +1,191 @@
+<casos_cancer>
+    <estado>
+        <nome>Acre</nome>
+        <qtd_casos>90</qtd_casos>
+        <taxa_bruta>19.83</taxa_bruta>
+        <taxa_ajustada>26.24</taxa_ajustada>
+        <regiao>Norte</regiao>
+    </estado>
+    <estado>
+        <nome>Amapá</nome>
+        <qtd_casos >90</qtd_casos>
+        <taxa_bruta >22.31</taxa_bruta>
+        <taxa_ajustada >33.00</taxa_ajustada>
+        <regiao>Norte</regiao>
+    </estado>
+    <estado>
+        <nome>Amazonas</nome>
+        <qtd_casos >700</qtd_casos>
+        <taxa_bruta >33.08</taxa_bruta>
+        <taxa_ajustada >40.18</taxa_ajustada>
+        <regiao>Norte</regiao>
+    </estado>
+    <estado>
+        <nome>Pará</nome>
+        <qtd_casos >780</qtd_casos>
+        <taxa_bruta >18.41</taxa_bruta>
+        <taxa_ajustada >22.00</taxa_ajustada>
+        <regiao>Norte</regiao>
+    </estado>
+    <estado>
+        <nome>Rondônia</nome>
+        <qtd_casos >130</qtd_casos>
+        <taxa_bruta >14.44</taxa_bruta>
+        <taxa_ajustada >17.22</taxa_ajustada>
+        <regiao>Norte</regiao>
+    </estado>
+    <estado>
+        <nome>Roraima</nome>
+        <qtd_casos >50</qtd_casos>
+        <taxa_bruta >19.01</taxa_bruta>
+        <taxa_ajustada >29.45</taxa_ajustada>
+        <regiao>Norte</regiao>
+    </estado>
+    <estado>
+        <nome>Tocantins</nome>
+        <qtd_casos >220</qtd_casos>
+        <taxa_bruta >27.90</taxa_bruta>
+        <taxa_ajustada >24.32</taxa_ajustada>
+        <regiao>Norte</regiao>
+    </estado>
+    <estado>
+        <nome>Alagoas</nome>
+        <qtd_casos >300</qtd_casos>
+        <taxa_bruta >16.80</taxa_bruta>
+        <taxa_ajustada >16.92</taxa_ajustada>
+        <regiao>Nordeste</regiao>
+    </estado>
+    <estado>
+        <nome>Bahia</nome>
+        <qtd_casos >1090</qtd_casos>
+        <taxa_bruta >13.85</taxa_bruta>
+        <taxa_ajustada >12.51</taxa_ajustada>
+        <regiao>Nordeste</regiao>
+    </estado>
+    <estado>
+        <nome>Ceara</nome>
+        <qtd_casos >1010</qtd_casos>
+        <taxa_bruta >21.49</taxa_bruta>
+        <taxa_ajustada >16.10</taxa_ajustada>
+        <regiao>Nordeste</regiao>
+    </estado>
+    <estado>
+        <nome>Maranhão</nome>
+        <qtd_casos >890</qtd_casos>
+        <taxa_bruta >24.74</taxa_bruta>
+        <taxa_ajustada >28.49</taxa_ajustada>
+        <regiao>Nordeste</regiao>
+    </estado>
+    <estado>
+        <nome>Paraíba</nome>
+        <qtd_casos >290</qtd_casos>
+        <taxa_bruta >13.56</taxa_bruta>
+        <taxa_ajustada >11.56</taxa_ajustada>
+        <regiao>Nordeste</regiao>
+    </estado>
+    <estado>
+        <nome>Pernambuco</nome>
+        <qtd_casos >730</qtd_casos>
+        <taxa_bruta >14.64</taxa_bruta>
+        <taxa_ajustada >13.03</taxa_ajustada>
+        <regiao>Nordeste</regiao>
+    </estado>
+    <estado>
+        <nome>Piauí</nome>
+        <qtd_casos >390</qtd_casos>
+        <taxa_bruta >23.19</taxa_bruta>
+        <taxa_ajustada >19.82</taxa_ajustada>
+        <regiao>Nordeste</regiao>
+    </estado>
+    <estado>
+        <nome>Rio Grande do Norte</nome>
+        <qtd_casos >310</qtd_casos>
+        <taxa_bruta >17.01</taxa_bruta>
+        <taxa_ajustada >15.13</taxa_ajustada>
+        <regiao>Nordeste</regiao>
+    </estado>
+    <estado>
+        <nome>Sergipe</nome>
+        <qtd_casos >240</qtd_casos>
+        <taxa_bruta >19.67</taxa_bruta>
+        <taxa_ajustada >19.43</taxa_ajustada>
+        <regiao>Nordeste</regiao>
+    </estado>
+    <estado>
+        <nome>Distrito Federal</nome>
+        <qtd_casos >260</qtd_casos>
+        <taxa_bruta >15.01</taxa_bruta>
+        <taxa_ajustada >9.29</taxa_ajustada>
+        <regiao>Centro-Oeste</regiao>
+    </estado>
+    <estado>
+        <nome>Goiás</nome>
+        <qtd_casos >590</qtd_casos>
+        <taxa_bruta >16.79</taxa_bruta>
+        <taxa_ajustada >12.27</taxa_ajustada>
+        <regiao>Centro-Oeste</regiao>
+    </estado>
+    <estado>
+        <nome>Mato Grosso</nome>
+        <qtd_casos >200</qtd_casos>
+        <taxa_bruta >12.06</taxa_bruta>
+        <taxa_ajustada >12.43</taxa_ajustada>
+        <regiao>Centro-Oeste</regiao>
+    </estado>
+    <estado>
+        <nome>Mato Grosso do Sul</nome>
+        <qtd_casos >270</qtd_casos>
+        <taxa_bruta >19.54</taxa_bruta>
+        <taxa_ajustada >18.28</taxa_ajustada>
+        <regiao>Centro-Oeste</regiao>
+    </estado>
+    <estado>
+        <nome>Espírito Santo</nome>
+        <qtd_casos >240</qtd_casos>
+        <taxa_bruta >11.65</taxa_bruta>
+        <taxa_ajustada >10.33</taxa_ajustada>
+        <regiao>Sudeste</regiao>
+    </estado>
+    <estado>
+        <nome>Minas Gerais</nome>
+        <qtd_casos >1270</qtd_casos>
+        <taxa_bruta >11.80</taxa_bruta>
+        <taxa_ajustada >6.89</taxa_ajustada>
+        <regiao>Sudeste</regiao>
+    </estado>
+    <estado>
+        <nome>Rio de Janeiro</nome>
+        <qtd_casos >1640</qtd_casos>
+        <taxa_bruta >18.80</taxa_bruta>
+        <taxa_ajustada >12.80</taxa_ajustada>
+        <regiao>Sudeste</regiao>
+    </estado>
+    <estado>
+        <nome>São Paulo</nome>
+        <qtd_casos >2250</qtd_casos>
+        <taxa_bruta >9.61</taxa_bruta>
+        <taxa_ajustada >5.93</taxa_ajustada>
+        <regiao>Sudeste</regiao>
+    </estado>
+    <estado>
+        <nome>Paraná</nome>
+        <qtd_casos >990</qtd_casos>
+        <taxa_bruta >16.89</taxa_bruta>
+        <taxa_ajustada >13.67</taxa_ajustada>
+        <regiao>Sul</regiao>
+    </estado>
+    <estado>
+        <nome>Rio Grande do Sul</nome>
+        <qtd_casos >720</qtd_casos>
+        <taxa_bruta >12.35</taxa_bruta>
+        <taxa_ajustada >7.61</taxa_ajustada>
+        <regiao>Sul</regiao>
+    </estado>
+    <estado>
+        <nome>Santa Catarina</nome>
+        <qtd_casos >970</qtd_casos>
+        <taxa_bruta >26.67</taxa_bruta>
+        <taxa_ajustada >12.60</taxa_ajustada>
+        <regiao>Sul</regiao>
+    </estado>
+</casos_cancer>
