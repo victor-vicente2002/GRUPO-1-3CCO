@@ -5,7 +5,7 @@ class LevelSensor:
     def __init__(self):
         pass
 
-    def readSensorData(self) -> float:
+    def read_sensor_data(self) -> float:
         weights = 80, 19, 1
         choice = random.choices(range(3), weights=weights)[0]
         standardValue = random.uniform(0.0 , 20.0)
@@ -23,7 +23,7 @@ class LevelSensor:
 def mainTest():
     sensor = LevelSensor()
     for i in range(0, 100):
-        print(sensor.readSensorData())
+        print(sensor.read_sensor_data())
 
 if __name__ == "__main__":
     mainTest()
