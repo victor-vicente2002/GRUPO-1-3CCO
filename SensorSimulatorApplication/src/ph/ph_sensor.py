@@ -3,12 +3,12 @@ from random import randrange, random
 NULL_PROBABILITY = 0.1 # 80% de chance pelo range de 0.0 a 0.9
 
 class PhSensor:
-    def __init__(self, higherVariation = None, lowerVariation = None):
-        self.higherVariation = higherVariation
-        self.lowerVariation = lowerVariation
+    def __init__(self):
         self.last_ph_value = randrange(6, 10)
+        self.MIN_VALUE = 4
+        self.MAX_VALUE = 12
 
-    def getPHValue(self):
+    def get_ph_value(self):
         ph_variation = round(random(), 3) # pega as casas decimais depois da virgula
         normal_variation = random()
         ph_value = None

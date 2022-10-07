@@ -3,11 +3,14 @@ from enum import Enum
 
 class TurbitySensor:
     def __init__(self, type):
+        self.MIN_VALUE = 0.9
         self.standardValue = range(10, 150)
         if type == Type.BASIC.name:
             self.range = range(0, 500)
+            self.MAX_VALUE = 500
         else: 
             self.range = range(0, 1000)
+            self.MAX_VALUE = 1000
     
     def read_sensor_data(self) -> float:
         weights = 80, 15, 5

@@ -7,19 +7,19 @@ TEMPO_ESPERA = 10 # 10 Segundos
 
 class CondutivitySensor:
     def __init__(self):
-        pass
+        self.MIN_VALUE = 0.7
+        self.MAX_VALUE = 500.0
 
-    def read_sensor_data(self):
+    def read_sensor_data(self) -> float:
         # 10% de chance de não gerar informação
         if round(random.uniform(0, 10)) == 7:
-            return 'NULL'
+            return None
 
         # 1% de chance de dar uma amostra "estranha"
         if round(random.uniform(0, 100)) == 7:
             return random.uniform(0.7, 50000)
 
-
-        return np.random.normal(200, 5, size=1)[0]
+        return np.random.normal(200, 5, size=1)[0].item()
 
 # while True:
 #     data = {

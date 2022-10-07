@@ -3,7 +3,8 @@ import random
 
 class LevelSensor:
     def __init__(self):
-        pass
+        self.MIN_VALUE = 0.0
+        self.MAX_VALUE = 20.0
 
     def read_sensor_data(self) -> float:
         weights = 80, 19, 1

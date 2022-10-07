@@ -5,19 +5,36 @@ from level.level_sensor import *
 from ph.ph_sensor import *
 from dissolved_oxigen.kit_oem import *
 from condutivity.condutivity_sensor import *
-from sensor_data import SensorData  
+from azure.iot.hub import IoTHubRegistryManager
 
-turbity_value = TurbitySensor(Type.ADVANCED)
-temperature_value = TemperatureSensor()
-level_value = LevelSensor()
-ph_value = PhSensor()
-oxigem_value = KitOEM()
-condutivity_value = CondutivitySensor()
+MESSAGE_COUNT = 10
+AVG_WIND_SPEED = 10.0
+MSG_TXT = "\"service client sent a message\": "
+CONNECTION_STRING = "HostName=testingIotMessagesVicente.azure-devices.net;SharedAccessKeyName=device;SharedAccessKey=uuhKWf+kgrcpGLj/iyxob1wrYcAEk3VQOOUTMWO3hhE="
+DEVICE_ID = "turbity_plus_test"
 
-for i in range(0, 100):
-    print(f'Turbidez: {turbity_value.read_sensor_data()}\n' + 
-        f'Temperatura: {temperature_value.read_temperature()}\n' +
-        f'Nível da água: {level_value.read_sensor_data()}\n' + 
-        f'Oxigenio da água: {oxigem_value.read()}\n' +
-        f'Ph: {level_value.read_sensor_data()}\n' +
-        f'Condutividade: {condutivity_value.read_sensor_data()}')
+def iothub_messaging_sample_run(data):
+    try:
+        # Create IoTHubRegistryManager
+        registry_manager = IoTHubRegistryManager(CONNECTION_STRING)
+
+        print ( 'Sending message to IoTHub: {0}'.format(data) )
+
+        props={}
+        # optional: assign system properties
+        props.update(contentType = "application/json")
+
+        # optional: assign application properties
+
+        registry_manager.send_c2d_message(DEVICE_ID, data, properties=props)
+
+    except Exception as ex:
+        print ( "Unexpected error {0}" % ex )
+        return
+    except KeyboardInterrupt:
+        print ( "IoT Hub C2D Messaging service sample stopped" )
+
+# if __name__ == '__main__':
+#     print ( "Starting the Python IoT Hub C2D Messaging service sample..." )
+
+#     iothub_messaging_sample_run()
