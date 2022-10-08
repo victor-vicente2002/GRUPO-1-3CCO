@@ -10,15 +10,14 @@ from azure.iot.hub import IoTHubRegistryManager
 MESSAGE_COUNT = 10
 AVG_WIND_SPEED = 10.0
 MSG_TXT = "\"service client sent a message\": "
-CONNECTION_STRING = "HostName=testingIotMessagesVicente.azure-devices.net;SharedAccessKeyName=device;SharedAccessKey=uuhKWf+kgrcpGLj/iyxob1wrYcAEk3VQOOUTMWO3hhE="
-DEVICE_ID = "turbity_plus_test"
+# CONNECTION_STRING = "HostName=testingIotMessagesVicente.azure-devices.net;SharedAccessKeyName=device;SharedAccessKey=uuhKWf+kgrcpGLj/iyxob1wrYcAEk3VQOOUTMWO3hhE="
 
-def iothub_messaging_sample_run(data):
+def iothub_messaging_sample_run(data, device_id, connection_string):
     try:
         # Create IoTHubRegistryManager
-        registry_manager = IoTHubRegistryManager(CONNECTION_STRING)
+        registry_manager = IoTHubRegistryManager(connection_string)
 
-        print ( 'Sending message to IoTHub: {0}'.format(data) )
+        print ( f'Sending message to IoTHub: {data}' )
 
         props={}
         # optional: assign system properties
@@ -26,7 +25,7 @@ def iothub_messaging_sample_run(data):
 
         # optional: assign application properties
 
-        registry_manager.send_c2d_message(DEVICE_ID, data, properties=props)
+        registry_manager.send_c2d_message(device_id, data, properties=props)
 
     except Exception as ex:
         print ( "Unexpected error {0}" % ex )
