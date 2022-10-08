@@ -18,10 +18,10 @@ class TurbitySensor:
         standard_value = random.uniform(self.standardValue.start, self.standardValue.stop)
 
         if choice == 0:
-            printed_value = round(standard_value, 5)
+            printed_value = round(standard_value, 2)
         elif choice == 1:
             peak = random.uniform(self.range.start, self.range.stop)
-            printed_value = round(peak, 5)
+            printed_value = round(peak, 2)
         else:
             printed_value = "null"
 

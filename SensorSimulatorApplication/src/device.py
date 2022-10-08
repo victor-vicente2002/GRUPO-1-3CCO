@@ -40,46 +40,46 @@ class Device:
             variation = self.generate_variation(temperature_registry, self.temperature_sensor.MIN_VALUE)
 
             turbity_registry = None if turbity_registry == None \
-                else turbity_registry + self.get_variation_from_registry(
+                else round(turbity_registry + self.get_variation_from_registry(
                     self.turbity_sensor.MAX_VALUE, 
                     variation
-                )
+                ), )
 
             ph_registry = None if ph_registry == None \
-                else ph_registry - self.get_variation_from_registry(
+                else round(ph_registry - self.get_variation_from_registry(
                     self.ph_sensor.MAX_VALUE,
                     variation
-                )
+                ), 2)
 
             oxigem_registry = None if oxigem_registry == None \
-                else oxigem_registry - self.get_variation_from_registry(
+                else round(oxigem_registry - self.get_variation_from_registry(
                     self.oxigem_sensor.max_range,
                     variation
-                )
+                ), 2)
                 
             condutivity_registry = None if condutivity_registry == None \
-                else condutivity_registry  + self.get_variation_from_registry(
+                else round(condutivity_registry  + self.get_variation_from_registry(
                     self.condutivity_sensor.MAX_VALUE,
                     variation
-                )
+                ), 2)
 
             if self.battery_percentage <= (0.005 * 4):
                 print("Mensagem de last will")
                 iothub_messaging_sample_run("last will", self.device_id, self.connection_string)
             else:
-                message_one = f'{temperature_registry},{ph_registry},{self.battery_percentage}'
-                self.battery_percentage -= (0.005)
-                message_two = f'{turbity_registry},{self.battery_percentage}'
-                self.battery_percentage -= (0.005)
-                message_three = f'{condutivity_registry},{self.battery_percentage}'
-                self.battery_percentage -= (0.005)
-
+                message_one = f'1{temperature_registry};{ph_registry};{round(self.battery_percentage, 3)}'
                 iothub_messaging_sample_run(message_one, self.device_id, self.connection_string)
+                self.battery_percentage = self.battery_percentage - 0.005
+                message_two = f'2{turbity_registry};{oxigem_registry};{round(self.battery_percentage, 3)}'
                 iothub_messaging_sample_run(message_two, self.device_id, self.connection_string)
+                self.battery_percentage = self.battery_percentage - 0.005
+                message_three = f'3{condutivity_registry};{round(self.battery_percentage, 3)}'
                 iothub_messaging_sample_run(message_three, self.device_id, self.connection_string)
+                self.battery_percentage = self.battery_percentage - 0.005
+                print(f'Battery: {self.battery_percentage}')
 
 if __name__ == "__main__":
-    device = Device("first_device", "HostName=testingIotMessagesVicente.azure-devices.net;SharedAccessKeyName=device;SharedAccessKey=uuhKWf+kgrcpGLj/iyxob1wrYcAEk3VQOOUTMWO3hhE=")
+    device = Device("device_water_solution_0001", "HostName=testingIotMessagesVicente.azure-devices.net;SharedAccessKeyName=device;SharedAccessKey=uuhKWf+kgrcpGLj/iyxob1wrYcAEk3VQOOUTMWO3hhE=")
     while(True):
-        time.sleep(1)
+        time.sleep(10)
         device.read_data()

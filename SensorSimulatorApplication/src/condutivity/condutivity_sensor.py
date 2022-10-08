@@ -19,7 +19,7 @@ class CondutivitySensor:
         if round(random.uniform(0, 100)) == 7:
             return random.uniform(0.7, 50000)
 
-        return np.random.normal(200, 5, size=1)[0].item()
+        return round(np.random.normal(200, 5, size=1)[0].item(), 2)
 
 # while True:
 #     data = {

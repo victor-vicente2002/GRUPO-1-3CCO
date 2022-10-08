@@ -33,4 +33,4 @@ class KitOEM:
 
     accured_value = actual_value + accuracy
 
-    return accured_value
+    return round(accured_value, 2)

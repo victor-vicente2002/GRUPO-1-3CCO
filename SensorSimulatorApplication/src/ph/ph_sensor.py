@@ -19,4 +19,4 @@ class PhSensor:
             ph_value = randrange(4, 12) + ph_variation
         self.last_ph_value = ph_value
         nullable_probability = random()
-        return None if nullable_probability < 0.1 else ph_value
+        return None if nullable_probability < 0.1 else round(ph_value, 2)

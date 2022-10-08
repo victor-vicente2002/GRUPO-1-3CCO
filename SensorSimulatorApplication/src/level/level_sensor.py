@@ -12,10 +12,10 @@ class LevelSensor:
         standardValue = random.uniform(0.0 , 20.0)
 
         if choice == 0:
-            returnedData = round(standardValue, 5)
+            returnedData = round(standardValue, 2)
         elif choice == 1:
             peak = random.uniform(15.0, 20.0)
-            returnedData = round(peak, 5)
+            returnedData = round(peak, 2)
         else:
             returnedData = "null"
 
