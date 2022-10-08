@@ -8,7 +8,7 @@ TEMPO_ESPERA = 10 # 10 Segundos
 class CondutivitySensor:
     def __init__(self):
         self.MIN_VALUE = 0.7
-        self.MAX_VALUE = 500.0
+        self.MAX_VALUE = 50000.0
 
     def read_sensor_data(self) -> float:
         # 10% de chance de não gerar informação

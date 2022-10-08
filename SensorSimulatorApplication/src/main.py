@@ -7,6 +7,7 @@ from condutivity.condutivity_sensor import CondutivitySensor
 from iot_hub_sender import iothub_messaging_sample_run
 
 def main():
+    battery_percentage = 100.0
     temperature_sensor = TemperatureSensor()
     turbity_sensor = TurbitySensor(Type.ADVANCED.name)
     ph_sensor = PhSensor()
@@ -29,15 +30,22 @@ def main():
         condutivity_registry = None if condutivity_registry == None else condutivity_registry + get_variation_from_registry(condutivity_sensor.MAX_VALUE, variation)
         # level_registry = level_registry
 
-        data = {
-            'temperature': temperature_registry,
-            'turbidy': turbity_registry,
-            'ph': ph_registry,
-            'dissolvedOxygen': oxigem_registry,
-            'conductivity': condutivity_registry
-        }
+        # data = {
+        #     'temperature': temperature_registry,
+        #     'turbidy': turbity_registry,
+        #     'ph': ph_registry,
+        #     'dissolvedOxygen': oxigem_registry,
+        #     'conductivity': condutivity_registry
+        # }
 
-        iothub_messaging_sample_run(str(data))
+        message_one = f'{temperature_registry},{ph_registry},{battery_percentage}'
+        message_two = f'{turbity_registry},{battery_percentage}'
+        message_three = f'{condutivity_registry},{battery_percentage}'
+
+        iothub_messaging_sample_run(message_one)
+        # battery_percentage = iothub_messaging_sample_run(message_one, battery_percentage)
+        # battery_percentage = iothub_messaging_sample_run(message_two, battery_percentage)
+        # battery_percentage = iothub_messaging_sample_run(message_three, battery_percentage)
 
         
     
