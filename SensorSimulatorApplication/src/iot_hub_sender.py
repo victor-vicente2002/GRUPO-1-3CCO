@@ -22,5 +22,3 @@ def iothub_messaging_sample_run(data, device_id, connection_string):
     except Exception as ex:
         print (f'Unexpected error {ex}')
         return
-    except KeyboardInterrupt:
-        print ( "IoT Hub C2D Messaging service sample stopped" )

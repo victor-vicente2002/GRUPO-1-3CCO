@@ -23,7 +23,7 @@ class TurbitySensor:
             peak = random.uniform(self.range.start, self.range.stop)
             printed_value = round(peak, 2)
         else:
-            printed_value = "null"
+            printed_value = None
 
         return printed_value
  

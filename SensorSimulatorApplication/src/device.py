@@ -69,17 +69,19 @@ class Device:
             else:
                 message_one = f'1{temperature_registry};{ph_registry};{round(self.battery_percentage, 3)}'
                 iothub_messaging_sample_run(message_one, self.device_id, self.connection_string)
-                self.battery_percentage = self.battery_percentage - 0.005
+                self.battery_percentage = round(self.battery_percentage - 0.005, 3)
                 message_two = f'2{turbity_registry};{oxigem_registry};{round(self.battery_percentage, 3)}'
                 iothub_messaging_sample_run(message_two, self.device_id, self.connection_string)
-                self.battery_percentage = self.battery_percentage - 0.005
+                self.battery_percentage = round(self.battery_percentage - 0.005, 3)
                 message_three = f'3{condutivity_registry};{round(self.battery_percentage, 3)}'
                 iothub_messaging_sample_run(message_three, self.device_id, self.connection_string)
-                self.battery_percentage = self.battery_percentage - 0.005
+                self.battery_percentage = round(self.battery_percentage - 0.005, 3)
                 print(f'Battery: {self.battery_percentage}')
 
 if __name__ == "__main__":
-    device = Device("device_water_solution_0001", "HostName=testingIotMessagesVicente.azure-devices.net;SharedAccessKeyName=device;SharedAccessKey=uuhKWf+kgrcpGLj/iyxob1wrYcAEk3VQOOUTMWO3hhE=")
+    device_name = "water-quality-sensor001"
+    connection_string = "HostName=water-quality-sensor.azure-devices.net;SharedAccessKeyName=device;SharedAccessKey=g42yHSeeXpUez1yKfKPifcTzrOsvjRF53rbZnzu+7Yg=" 
+    device = Device(device_name, connection_string)
     while(True):
         time.sleep(10)
         device.read_data()
