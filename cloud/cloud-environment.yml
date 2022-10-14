@@ -8,6 +8,7 @@ Metadata:
           - Client
           - NomeMain
           - NomeReplica
+          - RoleReplication
       - Label:
           default: VPC
         Parameters:
@@ -26,6 +27,8 @@ Metadata:
           default: Nome Bucket Replica
       NomeMain:
           default: Nome Bucket Main
+      RoleReplication:
+          default: Nome Role IAM Padrao
       Client:
         default: Cliente
       VpcCidr:
@@ -53,6 +56,9 @@ Parameters:
   NomeReplica:
     Type: String
     Description: O nome do bucket que armazenara as copias do bucket main
+  RoleReplication:
+    Type: String
+    Description: O nome da role IAM para permitir replicar
   VpcCidr:
     Type: String
     AllowedPattern: '((\d{1,3})\.){3}\d{1,3}/\d{1,2}'
@@ -103,7 +109,7 @@ Resources:
       VersioningConfiguration:
         Status: Enabled
       ReplicationConfiguration:
-        Role: 'arn:aws:iam::142669546617:role/LabRole'
+        Role: !Sub ${RoleReplication}
         Rules:
         - Status: Enabled
           Destination:
