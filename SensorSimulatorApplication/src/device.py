@@ -88,6 +88,53 @@ class Device:
 
         time.sleep(10)
 
+    def write_to_csv(self):
+        temperature_registry = self.temperature_sensor.read_temperature()
+        turbity_registry = self.turbity_sensor.read_sensor_data()
+        ph_registry = self.ph_sensor.get_ph_value()
+        oxigem_registry = self.oxigem_sensor.read()
+        condutivity_registry = self.condutivity_sensor.read_sensor_data()
+
+        variation = self.generate_variation(temperature_registry, self.temperature_sensor.MIN_VALUE)
+
+        turbity_registry = None if turbity_registry == None \
+        else round(turbity_registry + self.get_variation_from_registry(
+            self.turbity_sensor.MAX_VALUE,
+            variation
+        ), )
+
+        ph_registry = None if ph_registry == None \
+        else round(ph_registry - self.get_variation_from_registry(
+            self.ph_sensor.MAX_VALUE,
+            variation
+        ), 2)
+
+        oxigem_registry = None if oxigem_registry == None \
+        else round(oxigem_registry - self.get_variation_from_registry(
+            self.oxigem_sensor.max_range,
+            variation
+        ), 2)
+
+        condutivity_registry = None if condutivity_registry == None \
+        else round(condutivity_registry  + self.get_variation_from_registry(
+            self.condutivity_sensor.MAX_VALUE,
+            variation
+        ), 2)
+
+        if self.battery_percentage <= (0.005 * 4):
+            print("Mensagem de last will")
+            # iothub_messaging_sample_run("last will", self.device_id, self.connection_string)
+        else:
+            data = f'{temperature_registry},{ph_registry},{turbity_registry},{oxigem_registry},{condutivity_registry},{round(self.battery_percentage, 3)}'
+            data = data.replace('None', '')
+            self.battery_percentage = round(self.battery_percentage - 0.005, 3)
+            print(data)
+
+            with open('./data.csv', 'a') as f:
+                f.write(data + '\n')
+
+        time.sleep(10)
+
 
 if __name__ == "__main__":
     device_name = "water-quality-sensor001"
@@ -95,3 +142,4 @@ if __name__ == "__main__":
     device = Device(device_name, connection_string)
     while (True):
         device.read_data()
+        # devide.write_to_csv()
