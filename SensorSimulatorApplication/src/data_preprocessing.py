@@ -24,4 +24,4 @@ x[:, :] = imputer.transform(x[:, :])
 print(x[:, :])
 
 ## Write data to csv file with no index, no header and %.2f float format
-dataset.to_csv('data_clean.csv', index=False, header=False, float_format='%.2f')
+dataset.to_csv('data_clean.csv', index=False, header=True, float_format='%.2f')
