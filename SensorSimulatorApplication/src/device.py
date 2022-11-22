@@ -137,8 +137,8 @@ class Device:
 
 
 if __name__ == "__main__":
-    device_name = "water-quality-sensor001"
-    connection_string = "HostName=water-quality-sensor.azure-devices.net;SharedAccessKeyName=device;SharedAccessKey=g42yHSeeXpUez1yKfKPifcTzrOsvjRF53rbZnzu+7Yg="
+    device_name = "{INSIRA O NOME DO SEU DEVICE}"
+    connection_string = "{INSIRA AQUI SEU CONNECTION STRING}"
     device = Device(device_name, connection_string)
     while (True):
         device.read_data()

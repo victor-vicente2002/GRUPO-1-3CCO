@@ -3,7 +3,7 @@ from azure.iot.device import IoTHubDeviceClient
 
 RECEIVED_MESSAGES = 0
 
-CONNECTION_STRING = "HostName=water-quality-sensor.azure-devices.net;DeviceId=water-quality-sensor001;SharedAccessKey=uMV1U4aAper71/wLscZp+p9d0YZKtNjYSTQaESw8HEY="
+CONNECTION_STRING = "HostName=testingIotMessagesVicente.azure-devices.net;DeviceId=device_water_solution_0001;SharedAccessKey=IKIR93YRNVGW8GocWg3Z+3mS6xgVqDMLg2I5PUOx/20="
 
 def message_handler(message):
     global RECEIVED_MESSAGES
